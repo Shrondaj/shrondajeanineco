@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shronda Jeanine & Company - Restoring Wholeness, Building Abundance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;700&display=swap');
+        
+        :root {
+            --plum: #5A3E47;
+            --sage: #C1D0C0;
+            --cream: #F9F6F3;
+            --sand: #E6D5C3;
+            --gold: #D9B060;
+            --earth: #8B7355;
+            --forest: #4A6741;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 300px;
+            background: linear-gradient(180deg, var(--plum), #47323a);
+            color: var(--cream);
+            transform: translateX(-100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+        
+        .side-nav.open {
+            transform: translateX(0);
+            box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+        }
+        
+        .nav-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+        
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: var(--cream);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        .side-nav nav ul {
+            list-style: none;
+        }
+        
+        .side-nav nav ul li {
+            margin: 1.5rem 0;
+            transform: translateX(0);
+            transition: transform 0.3s;
+        }
+        
+        .side-nav nav ul li:hover {
+            transform: translateX(10px);
+        }
+        
+        .side-nav nav ul li a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            transition: color 0.3s;
+        }
+        
+        .side-nav nav ul li a:hover,
+        .side-nav nav ul li a.active {
+            color: var(--gold);
+        }
+        
+        .nav-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .donate-btn {
+            display: block;
+            text-align: center;
+            padding: 0.8rem 1.5rem;
+            background: var(--gold);
+            color: #2b1d12;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .donate-btn:hover {
+            background: var(--sand);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(217, 176, 96, 0.4);
+        }
+        
+        /* Header */
+        .site-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(249, 246, 243, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 900;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+        
+        .menu-btn {
+            background: transparent;
+            border: 2px solid var(--plum);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .menu-btn:hover {
+            background: var(--plum);
+            color: var(--cream);
+        }
+        
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--plum);
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--sage) 0%, var(--cream) 50%, var(--sand) 100%);
+        }
+        
+        .mandala-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            opacity: 0.08;
+            animation: rotate 60s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .hero-inner {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--plum);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-sub {
+            font-size: 1.3rem;
+            color: var(--earth);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            display: inline-block;
+        }
+        
+        .btn.primary {
+            background: var(--plum);
+            color: var(--cream);
+        }
+        
+        .btn.primary:hover {
+            background: transparent;
+            color: var(--plum);
+            border-color: var(--plum);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(90, 62, 71, 0.3);
+        }
+        
+        .btn.secondary {
+            background: transparent;
+            color: var(--plum);
+            border-color: var(--plum);
+        }
+        
+        .btn.secondary:hover {
+            background: var(--plum);
+            color: var(--cream);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(90, 62, 71, 0.3);
+        }
+        
+        /* Section Styling */
+        section {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--plum);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--gold);
+            margin: 1rem auto 0;
+        }
+        
+        /* Membership Section */
+        .membership {
+            background: linear-gradient(135deg, var(--cream), var(--sage));
+        }
+        
+        .membership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .membership-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .membership-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--sage), var(--gold));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+        
+        .membership-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        
+        .membership-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .membership-card.featured {
+            border: 3px solid var(--gold);
+            transform: scale(1.05);
+        }
+        
+        .membership-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .membership-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--plum);
+            margin-bottom: 1rem;
+        }
+        
+        .membership-price {
+            font-size: 3rem;
+            color: var(--earth);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .membership-price span {
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+        
+        .membership-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .membership-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .membership-features li:before {
+            content: '✓';
+            color: var(--forest);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+        
+        /* Blog Section */
+        .blog {
+            background: var(--cream);
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--sage), var(--sand));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: rgba(90, 62, 71, 0.2);
+        }
+        
+        .blog-content {
+            padding: 2rem;
+        }
+        
+        .blog-date {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--plum);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-excerpt {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .read-more {
+            color: var(--plum);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        
+        .read-more:hover {
+            color: var(--gold);
+        }
+        
+        /* Course Section */
+        .courses {
+            background: linear-gradient(135deg, var(--sand), var(--cream));
+        }
+        
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s;
+        }
+        
+        .course-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        .course-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--sage), var(--gold));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .course-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--plum);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .course-duration {
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        /* Footer */
+        .site-footer {
+            background: linear-gradient(180deg, var(--plum), #47323a);
+            color: var(--cream);
+            padding: 3rem 2rem 1.5rem;
+            margin-top: 0;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin: 0.8rem 0;
+        }
+        
+        .footer-section a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--gold);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-sub {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .membership-grid,
+            .blog-grid,
+            .course-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .membership-card.featured {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <aside class="side-nav" id="sideNav">
+        <div class="nav-top">
+            <div class="logo-container">
+                <span class="logo-text">SJ&Co</span>
+            </div>
+            <button class="close-btn" id="closeNav">×</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#membership">Membership</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="nav-bottom">
+            <a href="https://ko-fi.com/shrondajeanine" target="_blank" class="donate-btn">Donate</a>
+        </div>
+    </aside>
+
+    <!-- Header -->
+    <header class="site-header">
+        <button class="menu-btn" id="openNav">☰</button>
+        <div class="header-title">Shronda Jeanine & Company</div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <svg class="mandala-bg" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="20" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <path d="M100,20 L100,180 M20,100 L180,100" stroke="currentColor" stroke-width="0.5"/>
+            <path d="M35,35 L165,165 M165,35 L35,165" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+        <div class="hero-inner">
+            <h1>Restoring Wholeness. Building Abundance.</h1>
+            <p class="hero-sub">A holistic community action program providing grief support, trauma & addiction therapy, and empowerment services for individuals and families.</p>
+            <div class="hero-ctas">
+                <a href="#membership" class="btn primary">Join Our Community</a>
+                <a href="#services" class="btn secondary">Explore Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Section -->
+    <section class="membership" id="membership">
+        <h2 class="section-title">Membership Tiers</h2>
+        <div class="membership-grid">
+            <div class="membership-card">
+                <h3>Essence</h3>
+                <div class="membership-price">$25<span>/month</span></div>
+                <ul class="membership-features">
+                    <li>Access to group healing sessions</li>
+                    <li>Monthly wellness newsletter</li>
+                    <li>Community forum access</li>
+                    <li>Monthly meditation sessions</li>
+                    <li>Resource library</li>
+                </ul>
+                <a href="#contact" class="btn primary">Get Started</a>
+            </div>
+            
+            <div class="membership-card featured">
+                <div class="membership-badge">MOST POPULAR</div>
+                <h3>Harmony</h3>
+                <div class="membership-price">$75<span>/month</span></div>
+                <ul class="membership-features">
+                    <li>All Essence benefits</li>
+                    <li>2 coaching sessions/month</li>
+                    <li>Priority event registration</li>
+                    <li>Course discounts (20%)</li>
+                    <li>Private community circle</li>
+                    <li>Quarterly wellness kit</li>
+                </ul>
+                <a href="#contact" class="btn primary">Join Now</a>
+            </div>
+            
+            <div class="membership-card">
+                <div class="membership-badge">EXCLUSIVE</div>
+                <h3>Majestic Life</h3>
+                <div class="membership-price">$150<span>/month</span></div>
+                <ul class="membership-features">
+                    <li>All Harmony benefits</li>
+                    <li>4 coaching sessions/month</li>
+                    <li>Unlimited course access</li>
+                    <li>1-on-1 crisis support</li>
+                    <li>VIP event access</li>
+                    <li>Monthly abundance box</li>
+                    <li>Exclusive member retreats</li>
+                    <li>Personal growth plan</li>
+                </ul>
+                <a href="#contact" class="btn primary">Become Majestic</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <h2 class="section-title">Online Courses</h2>
+        <div class="course-grid">
+            <div class="course-card">
+                <div class="course-icon">🌱</div>
+                <h3>Foundations of Healing</h3>
+                <div class="course-duration">6 weeks • Self-paced</div>
+                <p>Begin your journey to wholeness with trauma-informed practices and self-compassion techniques.</p>
+                <a href="#contact" class="btn secondary">Enroll Now</a>
+            </div>
+            
+            <div class="course-card">
+                <div class="course-icon">🧘</div>
+                <h3>Mindful Recovery</h3>
+                <div class="course-duration">8 weeks • Guided</div>
+                <p>Navigate addiction recovery with meditation, mindfulness, and community support.</p>
+                <a href="#contact" class="btn secondary">Enroll Now</a>
+            </div>
+            
+            <div class="course-card">
+                <div class="course-icon">💎</div>
+                <h3>Abundance Mindset</h3>
+                <div class="course-duration">4 weeks • Interactive</div>
+                <p>Transform limiting beliefs and cultivate generational wealth consciousness.</p>
+                <a href="#contact" class="btn secondary">Enroll Now</a>
+            </div>
+            
+            <div class="course-card">
+                <div class="course-icon">🌸</div>
+                <h3>Family Restoration</h3>
+                <div class="course-duration">10 weeks • Group</div>
+                <p>Heal family trauma patterns and build stronger, more connected relationships.</p>
+                <a href="#contact" class="btn secondary">Enroll Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog" id="blog">
+        <h2 class="section-title">Latest Insights</h2>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-image">🌿</div>
+                <div class="blog-content">
+                    <div class="blog-date">November 8, 2025</div>
+                    <h3>The Path to Self-Forgiveness</h3>
+                    <p class="blog-excerpt">Discover how releasing self-judgment opens the door to profound healing and authentic abundance in your life.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">🦋</div>
+                <div class="blog-content">
+                    <div class="blog-date">November 5, 2025</div>
+                    <h3>Breaking Generational Trauma</h3>
+                    <p class="blog-excerpt">Learn the powerful practices that help families heal inherited pain and create new legacies of wholeness.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </article>
+            
+            <article class="blog-card">
+                <div class="blog-image">🌊</div>
+                <div class="blog-content">
+                    <div class="blog-date">November 1, 2025</div>
+                    <h3>Mindfulness in Recovery</h3>
+                    <p class="blog-excerpt">Why presence and awareness are essential tools in the journey from addiction to freedom.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#membership">Membership</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#">Garden Project</a></li>
+                    <li><a href="#">Support Circles</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:shrondajeanine@shrondajeanineco.com">shrondajeanine@shrondajeanineco.com</a></li>
+                    <li><a href="tel:6029022677">(602) 902-2677</a></li>
+                    <li>Phoenix, Arizona</li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Crisis Support</h4>
+                <ul>
+                    <li><a href="tel:6029022677">Call: (602) 902-2677</a></li>
+                    <li><a href="tel:988">National Crisis: 988</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© <span id="year"></span> Shronda Jeanine & Company. Restoring Wholeness. Building Abundance.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation
+        const openNav = document.getElementById('openNav');
+        const closeNav = document.getElementById('closeNav');
+        const sideNav = document.getElementById('sideNav');
+        
+        openNav.addEventListener('click', () => {
+            sideNav.classList.add('open');
+        });
+        
+        closeNav.addEventListener('click', () => {
+            sideNav.classList.remove('open');
+        });
+        
+        // Close nav when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!sideNav.contains(e.target) && !openNav.contains(e.target)) {
+                sideNav.classList.remove('open');
+            }
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    sideNav.classList.remove('open');
+                }
+            });
+        });
+        
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+        
+        // Header scroll effect
+        let lastScroll = 0;
+        const header = document.querySelector('.site-header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.05)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Active nav link on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.side-nav nav a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
